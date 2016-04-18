@@ -1,0 +1,43 @@
+{
+  "manifest_version": 2,
+
+  "name": "GameofSpoils: Game of Thrones Spoiler Blocker",
+  "short_name": "GameOfSpoils",
+  "description": "A Game of Thrones spoiler blocking plugin for your Facebook, Twitter, Reddit, and Google News feeds.",
+  "version": "0.6",
+
+  "browser_action": {
+    "default_icon": "assets/icons/icon128.png",
+    "default_popup": "popup.html",
+    "default_title": "Game of Spoilers"
+  },
+
+  "icons": {
+    "16":  "assets/icons/icon16.png",
+    "19":  "assets/icons/icon16.png",
+    "48":  "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+
+  "background": {
+    "scripts": ["scripts/background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "http://www.facebook.com/*", "https://www.facebook.com/*",
+        "http://twitter.com/*",      "https://twitter.com/*",
+        "http://news.google.com/*",  "https://news.google.com/*",
+        "http://www.reddit.com/*",   "https://www.reddit.com/*"
+      ],
+      "css": ["styles/content.css"],
+      "js":  ["scripts/vendor/jquery.min.js", "scripts/constants.js", "scripts/helpers.js", "scripts/content.js"]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
+}
