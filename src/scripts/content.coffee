@@ -67,6 +67,5 @@ else if url.indexOf('news.google') > -1
 
 else if url.indexOf('reddit.com') > -1
   reddit_mode = true
-  # Dont censor GoT-related things in GoT-related subreddits, since that'd pretty much block everything...
-  if url.search(/(\/r\/)gameofthrones|asoiaf|iceandfire|agotboardgame|gamesofthrones|westeros|thronescomics/) == -1
+  if url.search(GOT_SUBREDDITS_REGEX) == -1
     initiateSpoilerBlocking REDDIT_FEED_ELEMENTS_SELECTOR

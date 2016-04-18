@@ -63,3 +63,17 @@ DEATH_NAMES = [
   'was murdered by its very own nuncle'
   'was impaled by a lance at a tournament by a lowly hedge knight'
 ]
+
+# Subreddits that are GoT related, dont block GoT-related things there, since that'd pretty much block everything...
+GOT_RELATED_SUBREDDITS = [
+  'gameofthrones'
+  'asoiaf'
+  'iceandfire'
+  'agotboardgame'
+  'gamesofthrones'
+  'westeros'
+  'thronescomics'
+  'asongofmemesandrage'
+  'earthoficeandfire'
+]
+GOT_SUBREDDITS_REGEX = new RegExp('(\/r\/)' + GOT_RELATED_SUBREDDITS.join('|'), 'i')
