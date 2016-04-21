@@ -8,7 +8,7 @@ GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = '.blended-wrapper';
 
 REDDIT_FEED_ELEMENTS_SELECTOR = '.sitetable > .thing.link:visible';
 
-SPOILER_WORDS_LIST = ['#got', 'asoiaf', 'baelish', 'baratheon', 'bolton', 'braavos', 'brienne', 'bronn', 'cersei', 'clegane', 'daenerys', 'game of thrones', 'gameofthrone', 'greyjoy', 'jon snow', 'khaleesi', 'lannister', 'littlefinger', 'melisandre', 'ned stark', 'sansa', 'stannis', 'targaryen', 'tarly', 'the hound', 'tyrell', 'tyrion', 'varys', 'viserys', 'westeros', 'wildling', 'winterfell'];
+SPOILER_WORDS_LIST = ['#got', 'arya stark', 'asoiaf', 'azor ahai', 'baelish', 'baratheon', 'braavos', 'brienne of tarth', 'bran stark', 'casterly rock', 'cersei', 'd.b. weiss', 'sandor clegane', 'daenerys', 'david benioff', 'davos seaworth', 'dornish', 'dothraki', 'dreadfort', 'game of thrones', 'gameofthrone', 'greyjoy', 'highgarden', 'house bolton', 'house stark', 'house tyrell', 'jojen reed', 'jon snow', 'khaleesi', "king's landing", 'ady stonehea', 'lannisport', 'lannister', 'littlefinger', 'melisandre', 'olenna tyrell', 'podrick payne', 'queen of thorns', 'ramsay bolton', 'roose bolton', 'ned stark', 'sansa stark', 'sothoryos', 'targaryen', 'tyrion', 'viserys', 'westeros', 'wildling', 'winterfell', 'white walker', 'whitewalker'];
 
 SPOILER_WORDS_REGEX = new RegExp(SPOILER_WORDS_LIST.join('|'), 'i');
 
