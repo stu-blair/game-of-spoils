@@ -3,6 +3,7 @@ FACEBOOK_FEED_ELEMENTS_SELECTOR    = '.userContentWrapper'
 TWITTER_FEED_ELEMENTS_SELECTOR     = "[data-item-type='tweet']"
 GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = '.blended-wrapper'
 REDDIT_FEED_ELEMENTS_SELECTOR      = '.sitetable > .thing.link:visible'
+AVCLUB_FEED_ELEMENTS_SELECTOR      = '.item, article.short'
 
 
 # GoT-specific words that are potentially spoiler-ific and thus trigger a spoiler blocker

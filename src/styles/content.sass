@@ -4,10 +4,11 @@
   height: 100%
   left: 0
   top: 0
-  zIndex: 1000000
-  background: black
-  color: white
-  cursor: not-allowed
+  z-index: 1000000
+  background: black !important
+  color: white  !important
+  cursor: not-allowed  !important
+  overflow: hidden !important
   -webkit-transition: height 2450ms ease-in, top 2450ms ease-in
   -moz-transition: height 2450ms ease-in, top 2450ms ease-in
   -o-transition: height 2450ms ease-in, top 2450ms ease-in
@@ -30,11 +31,13 @@
     margin-top: 3px
     display: inline-block
   h3
-    color: rgb(165, 213, 255)
-    font-size: 45px
+    color: rgb(165, 213, 255) !important
+    font-size: 45px !important
     padding-left: 8px
     margin-top: 12px
     opacity: 1
+    text-transform: none !important
+    background: black !important
   .click-to-view-spoiler
     opacity: 0
     color: red
@@ -48,6 +51,12 @@
       opacity: 0.8
     .click-to-view-spoiler
       opacity: 1
+
+// AV Club specific
+article.short .spoiler-glamour.small h3
+  margin: 0
+  font-size: 16px !important
+
 
 .debug-floaty-thingy
   position: fixed

@@ -29,7 +29,8 @@
         "http://www.facebook.com/*", "https://www.facebook.com/*",
         "http://twitter.com/*",      "https://twitter.com/*",
         "http://news.google.com/*",  "https://news.google.com/*",
-        "http://www.reddit.com/*",   "https://www.reddit.com/*"
+        "http://www.reddit.com/*",   "https://www.reddit.com/*",
+        "http://www.avclub.com/*",   "https://www.avclub.com/*"
       ],
       "css": ["styles/content.css"],
       "js":  ["scripts/vendor/jquery.min.js", "scripts/constants.js", "scripts/helpers.js", "scripts/content.js"]

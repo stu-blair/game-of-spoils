@@ -69,3 +69,7 @@ else if url.indexOf('reddit.com') > -1
   reddit_mode = true
   if url.search(GOT_SUBREDDITS_REGEX) == -1
     initiateSpoilerBlocking REDDIT_FEED_ELEMENTS_SELECTOR
+
+else if url.indexOf('avclub.com') > -1
+  smaller_font_mode = true
+  initiateSpoilerBlocking AVCLUB_FEED_ELEMENTS_SELECTOR
