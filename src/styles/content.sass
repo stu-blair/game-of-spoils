@@ -28,22 +28,27 @@
       transition: opacity 1700ms ease-in
   &.small h3
     font-size: 18px !important
+    line-height: 18px !important
   &.redditized h3
     font-size: 23px !important
+    line-height: 23px !important
     margin-top: 3px
   h3
     display: inline
     color: rgb(165, 213, 255) !important
     font-size: 35px !important
+    line-height: 35px !important
     font-weight: normal
     margin-top: 12px
     opacity: 1
     text-transform: none !important
     background: black !important
+    padding: 0 !important
   h3.click-to-view-spoiler
     opacity: 0
     color: red !important
-    font-size: 35px
+    font-size: 35px !important
+    line-height: 35px !important
     padding-left: 16px
   &:hover
     background: rgb(71, 24, 24)
@@ -56,8 +61,15 @@
 // AV Club specific
 article.short .spoiler-glamour.small h3
   margin: 0
-  font-size: 16px !important
-
+  font-size: 18px !important
+  line-height: 18px !important
+article.item
+  &.graphical, &.tabular
+    .spoiler-glamour h3
+      font-size: 24px !important
+      line-height: 24px !important
+      padding: 0
+      margin: 0
 
 .debug-floaty-thingy
   position: fixed
