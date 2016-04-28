@@ -25,17 +25,7 @@ document.addEventListener('DOMContentLoaded', (function(_this) {
 
 loadUserPreferencesAndUpdate = (function(_this) {
   return function() {
-    return chrome.storage.sync.get(DATA_KEY, function(result) {
-      var userPreferencesJSONString;
-      userPreferencesJSONString = result[DATA_KEY];
-      if (!userPreferencesJSONString) {
-        _this.userPreferences = {
-          blockingEnabled: true,
-          showSpecificWordEnabled: true
-        };
-      } else {
-        _this.userPreferences = JSON.parse(userPreferencesJSONString);
-      }
+    return loadUserPreferences(function() {
       _this.blockingEnabledToggle.checked = _this.userPreferences.blockingEnabled;
       return _this.showSpecificWordToggle.checked = _this.userPreferences.showSpecificWordEnabled;
     });

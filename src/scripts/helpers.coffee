@@ -24,6 +24,22 @@ addClass = (element, className) ->
 
 
 
+loadUserPreferences = (callback) =>
+   chrome.storage.sync.get DATA_KEY, (result) =>
+    userPreferencesJSONString = result[DATA_KEY]
+    if !userPreferencesJSONString
+      @userPreferences = {
+        blockingEnabled: true
+        showSpecificWordEnabled: true
+      }
+    else
+      @userPreferences = JSON.parse userPreferencesJSONString
+      @userPreferences.blockingEnabled         = true unless @userPreferences.hasOwnProperty 'blockingEnabled'
+      @userPreferences.showSpecificWordEnabled = true unless @userPreferences.hasOwnProperty 'showSpecificWordEnabled'
+    callback() if callback
+
+
+
 # --------------------------------------- #
 # Debugging
 # --------------------------------------- #

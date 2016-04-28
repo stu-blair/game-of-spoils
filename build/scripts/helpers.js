@@ -1,4 +1,4 @@
-var $log, GAME_O_SPOILERS_DEBUG_MODE, addClass, cl, debounce, debounce_timeout, hasClass, log_timeout;
+var $log, GAME_O_SPOILERS_DEBUG_MODE, addClass, cl, debounce, debounce_timeout, hasClass, loadUserPreferences, log_timeout;
 
 debounce_timeout = null;
 
@@ -31,6 +31,32 @@ addClass = function(element, className) {
     return element.className += " " + className;
   }
 };
+
+loadUserPreferences = (function(_this) {
+  return function(callback) {
+    return chrome.storage.sync.get(DATA_KEY, function(result) {
+      var userPreferencesJSONString;
+      userPreferencesJSONString = result[DATA_KEY];
+      if (!userPreferencesJSONString) {
+        _this.userPreferences = {
+          blockingEnabled: true,
+          showSpecificWordEnabled: true
+        };
+      } else {
+        _this.userPreferences = JSON.parse(userPreferencesJSONString);
+        if (!_this.userPreferences.hasOwnProperty('blockingEnabled')) {
+          _this.userPreferences.blockingEnabled = true;
+        }
+        if (!_this.userPreferences.hasOwnProperty('showSpecificWordEnabled')) {
+          _this.userPreferences.showSpecificWordEnabled = true;
+        }
+      }
+      if (callback) {
+        return callback();
+      }
+    });
+  };
+})(this);
 
 GAME_O_SPOILERS_DEBUG_MODE = false;
 

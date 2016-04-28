@@ -1,11 +1,6 @@
 numSpoilersBlocked = 0
 @userPreferences = {}
-
-loadUserPreferencesAndUpdate =  =>
-  chrome.storage.sync.get DATA_KEY, (result) =>
-    @userPreferences = JSON.parse result[DATA_KEY]
-
-loadUserPreferencesAndUpdate()
+loadUserPreferences()
 
 
 
@@ -17,17 +12,23 @@ chrome.runtime.onMessage.addListener (request, sender, sendResponse) =>
     chrome.browserAction.setBadgeText text: "#{numSpoilersBlocked}"
     chrome.runtime.sendMessage {newSpoilerBlocked: true}, ->
       sendResponse {result: "successfully updated"}
+    return true
 
   else if request.fetchPopupTotal
     sendResponse {newTotal: numSpoilersBlocked}
+    return false
 
   else if request.userPreferencesUpdated
-    loadUserPreferencesAndUpdate()
+    loadUserPreferences()
+    return false
 
   else if request.userPreferencesRequested
-    sendResponse @userPreferences
+    loadUserPreferences =>
+      sendResponse @userPreferences
+    return true
 
   else
     sendResponse {result: "failed to update"}
+    return false
 
-  return true
+

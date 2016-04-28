@@ -1,18 +1,10 @@
-var loadUserPreferencesAndUpdate, numSpoilersBlocked;
+var numSpoilersBlocked;
 
 numSpoilersBlocked = 0;
 
 this.userPreferences = {};
 
-loadUserPreferencesAndUpdate = (function(_this) {
-  return function() {
-    return chrome.storage.sync.get(DATA_KEY, function(result) {
-      return _this.userPreferences = JSON.parse(result[DATA_KEY]);
-    });
-  };
-})(this);
-
-loadUserPreferencesAndUpdate();
+loadUserPreferences();
 
 chrome.runtime.onMessage.addListener((function(_this) {
   return function(request, sender, sendResponse) {
@@ -28,19 +20,25 @@ chrome.runtime.onMessage.addListener((function(_this) {
           result: "successfully updated"
         });
       });
+      return true;
     } else if (request.fetchPopupTotal) {
       sendResponse({
         newTotal: numSpoilersBlocked
       });
+      return false;
     } else if (request.userPreferencesUpdated) {
-      loadUserPreferencesAndUpdate();
+      loadUserPreferences();
+      return false;
     } else if (request.userPreferencesRequested) {
-      sendResponse(_this.userPreferences);
+      loadUserPreferences(function() {
+        return sendResponse(_this.userPreferences);
+      });
+      return true;
     } else {
       sendResponse({
         result: "failed to update"
       });
+      return false;
     }
-    return true;
   };
 })(this));

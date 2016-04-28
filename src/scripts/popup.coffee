@@ -19,15 +19,7 @@ document.addEventListener 'DOMContentLoaded', =>
 
 
 loadUserPreferencesAndUpdate = =>
-  chrome.storage.sync.get DATA_KEY, (result) =>
-    userPreferencesJSONString = result[DATA_KEY]
-    if !userPreferencesJSONString
-      @userPreferences = {
-        blockingEnabled: true
-        showSpecificWordEnabled: true
-      }
-    else
-      @userPreferences = JSON.parse userPreferencesJSONString
+  loadUserPreferences =>
     @blockingEnabledToggle.checked = @userPreferences.blockingEnabled
     @showSpecificWordToggle.checked = @userPreferences.showSpecificWordEnabled
 
