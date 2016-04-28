@@ -8,12 +8,15 @@ this.smaller_font_mode = false;
 
 this.reddit_mode = false;
 
+this.show_specific_words = true;
+
 $document = $(document);
 
 $document.ready(function() {
   return chrome.runtime.sendMessage({
     userPreferencesRequested: true
   }, function(response) {
+    this.show_specific_words = response.showSpecificWordEnabled;
     if (response.blockingEnabled) {
       return initialize();
     }
@@ -67,16 +70,19 @@ searchForAndBlockSpoilers = function(feed_elements_selector, force_update) {
 };
 
 exileTraitorousSpoiler = function($traitor, dark_words_of_spoilage) {
-  var $glamour, capitalized_spoiler_words, glamour_string;
+  var $glamour, capitalized_spoiler_words, glamour_string, specific_words;
   capitalized_spoiler_words = dark_words_of_spoilage.capitalizeFirstLetter();
   cl("A bespoiling traitor in our midst! the forbidden words hath been spake: '" + capitalized_spoiler_words + "'.");
   $traitor.addClass('glamoured');
-  glamour_string = "<div class='spoiler-glamour " + (this.smaller_font_mode ? 'small' : '') + " " + (this.reddit_mode ? 'redditized' : '') + "'> <h3 class='spoiler-obituary'>A potential spoiler here " + (getDeathName()) + ", because it dared mention the phrase '" + capitalized_spoiler_words + "'.</h3> <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3> </div>";
+  specific_words = this.show_specific_words ? ", because it dared mention the phrase '" + capitalized_spoiler_words + "'" : "";
+  glamour_string = "<div class='spoiler-glamour " + (this.smaller_font_mode ? 'small' : '') + " " + (this.reddit_mode ? 'redditized' : '') + "'> <h3 class='spoiler-obituary'>A potential spoiler here " + (getDeathName()) + specific_words + ".</h3> <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3> </div>";
   $(glamour_string).appendTo($traitor);
   incrementBadgeNumber();
   $glamour = $traitor.find('.spoiler-glamour');
   return $glamour.on('click', function() {
-    if (!confirm("Are you sure you want to view this potentially spoiler-ific mention of '" + capitalized_spoiler_words + "'?")) {
+    var specific_words_for_confirm;
+    specific_words_for_confirm = this.show_specific_words ? "mention of '" + capitalized_spoiler_words + "'" : "spoiler";
+    if (!confirm("Are you sure you want to view this potentially spoiler-ific " + specific_words_for_confirm + "?")) {
       return;
     }
     $glamour.addClass('revealed');

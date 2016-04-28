@@ -18,11 +18,18 @@
     %div
     .setting-holder
       .onoffswitch
-        %input#blocking-enabled-toggle.onoffswitch-checkbox{type: "checkbox", name: "onoffswitch"}
-        %label.onoffswitch-label{for:"blocking-enabled-toggle"}
+        %input#blocking-enabled-toggle.onoffswitch-checkbox{type: "checkbox", name: "onoffswitch", checked: "checked"}
+        %label.onoffswitch-label{for: "blocking-enabled-toggle"}
           %span.onoffswitch-inner
           %span.onoffswitch-switch
       .setting-text= 'Blocking spoilers enabled'
+    .setting-holder
+      .onoffswitch
+        %input#show-specific-word-toggle.onoffswitch-checkbox{type: "checkbox", name: "onoffswitch", checked: "checked"}
+        %label.onoffswitch-label{for: "show-specific-word-toggle"}
+          %span.onoffswitch-inner
+          %span.onoffswitch-switch
+      .setting-text= 'Show specific phrase blocked'
 
     #num-spoilers-prevented
     #lifetime-spoilers-prevented

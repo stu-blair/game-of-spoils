@@ -4,8 +4,10 @@ sessionSpoilersBlocked = 0;
 
 document.addEventListener('DOMContentLoaded', (function(_this) {
   return function() {
-    _this.blockingEnabledCheckbox = document.getElementById('blocking-enabled-toggle');
-    _this.blockingEnabledCheckbox.addEventListener('change', storeUserPreferences);
+    _this.blockingEnabledToggle = document.getElementById('blocking-enabled-toggle');
+    _this.showSpecificWordToggle = document.getElementById('show-specific-word-toggle');
+    _this.blockingEnabledToggle.addEventListener('change', storeUserPreferences);
+    _this.showSpecificWordToggle.addEventListener('change', storeUserPreferences);
     $('.onoffswitch-switch').css('background-image', 'url("assets/images/targaryen.png")');
     loadUserPreferencesAndUpdate();
     return setTimeout((function() {
@@ -24,8 +26,18 @@ document.addEventListener('DOMContentLoaded', (function(_this) {
 loadUserPreferencesAndUpdate = (function(_this) {
   return function() {
     return chrome.storage.sync.get(DATA_KEY, function(result) {
-      _this.userPreferences = JSON.parse(result[DATA_KEY]);
-      return _this.blockingEnabledCheckbox.checked = _this.userPreferences.blockingEnabled;
+      var userPreferencesJSONString;
+      userPreferencesJSONString = result[DATA_KEY];
+      if (!userPreferencesJSONString) {
+        _this.userPreferences = {
+          blockingEnabled: true,
+          showSpecificWordEnabled: true
+        };
+      } else {
+        _this.userPreferences = JSON.parse(userPreferencesJSONString);
+      }
+      _this.blockingEnabledToggle.checked = _this.userPreferences.blockingEnabled;
+      return _this.showSpecificWordToggle.checked = _this.userPreferences.showSpecificWordEnabled;
     });
   };
 })(this);
@@ -35,7 +47,8 @@ storeUserPreferences = (function(_this) {
     var data;
     data = {};
     data[DATA_KEY] = JSON.stringify({
-      blockingEnabled: _this.blockingEnabledCheckbox.checked
+      blockingEnabled: _this.blockingEnabledToggle.checked,
+      showSpecificWordEnabled: _this.showSpecificWordToggle.checked
     });
     return chrome.storage.sync.set(data, function(response) {
       return chrome.runtime.sendMessage({

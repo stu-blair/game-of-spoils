@@ -1,8 +1,10 @@
 sessionSpoilersBlocked  = 0
 
 document.addEventListener 'DOMContentLoaded', =>
-  @blockingEnabledCheckbox = document.getElementById 'blocking-enabled-toggle'
-  @blockingEnabledCheckbox.addEventListener 'change', storeUserPreferences
+  @blockingEnabledToggle  = document.getElementById 'blocking-enabled-toggle'
+  @showSpecificWordToggle = document.getElementById 'show-specific-word-toggle'
+  @blockingEnabledToggle.addEventListener  'change', storeUserPreferences
+  @showSpecificWordToggle.addEventListener 'change', storeUserPreferences
 
   $('.onoffswitch-switch').css 'background-image', 'url("assets/images/targaryen.png")'
 
@@ -18,13 +20,22 @@ document.addEventListener 'DOMContentLoaded', =>
 
 loadUserPreferencesAndUpdate = =>
   chrome.storage.sync.get DATA_KEY, (result) =>
-    @userPreferences = JSON.parse result[DATA_KEY]
-    @blockingEnabledCheckbox.checked = @userPreferences.blockingEnabled
+    userPreferencesJSONString = result[DATA_KEY]
+    if !userPreferencesJSONString
+      @userPreferences = {
+        blockingEnabled: true
+        showSpecificWordEnabled: true
+      }
+    else
+      @userPreferences = JSON.parse userPreferencesJSONString
+    @blockingEnabledToggle.checked = @userPreferences.blockingEnabled
+    @showSpecificWordToggle.checked = @userPreferences.showSpecificWordEnabled
 
 storeUserPreferences = =>
   data = {}
   data[DATA_KEY] = JSON.stringify {
-    blockingEnabled: @blockingEnabledCheckbox.checked
+    blockingEnabled: @blockingEnabledToggle.checked
+    showSpecificWordEnabled: @showSpecificWordToggle.checked
   }
   chrome.storage.sync.set data, (response) ->
     chrome.runtime.sendMessage { userPreferencesUpdated: true }, (->)

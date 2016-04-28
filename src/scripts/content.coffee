@@ -2,10 +2,12 @@ first_feed_elem_text = null
 num_feed_elems       = null
 @smaller_font_mode = false
 @reddit_mode       = false
+@show_specific_words = true
 $document = $(document)
 
 $document.ready ->
   chrome.runtime.sendMessage { userPreferencesRequested: true }, (response) ->
+    @show_specific_words = response.showSpecificWordEnabled
     initialize() if response.blockingEnabled
 
 
@@ -47,15 +49,17 @@ exileTraitorousSpoiler = ($traitor, dark_words_of_spoilage) ->
   capitalized_spoiler_words = dark_words_of_spoilage.capitalizeFirstLetter()
   cl "A bespoiling traitor in our midst! the forbidden words hath been spake: '#{capitalized_spoiler_words}'."
   $traitor.addClass 'glamoured'
+  specific_words = if @show_specific_words then ", because it dared mention the phrase '#{capitalized_spoiler_words}'" else ""
   glamour_string = "<div class='spoiler-glamour #{if @smaller_font_mode then 'small' else ''} #{if @reddit_mode then 'redditized' else ''}'>
-                      <h3 class='spoiler-obituary'>A potential spoiler here #{getDeathName()}, because it dared mention the phrase '#{capitalized_spoiler_words}'.</h3>
+                      <h3 class='spoiler-obituary'>A potential spoiler here #{getDeathName()}#{specific_words}.</h3>
                       <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3>
                     </div>"
   $(glamour_string).appendTo $traitor
   incrementBadgeNumber()
   $glamour = $traitor.find '.spoiler-glamour'
   $glamour.on 'click', ->
-    return unless confirm "Are you sure you want to view this potentially spoiler-ific mention of '#{capitalized_spoiler_words}'?"
+    specific_words_for_confirm = if @show_specific_words then "mention of '#{capitalized_spoiler_words}'" else "spoiler"
+    return unless confirm "Are you sure you want to view this potentially spoiler-ific #{specific_words_for_confirm}?"
     $glamour.addClass 'revealed'
     setTimeout (-> $glamour.remove()), 3500
 
