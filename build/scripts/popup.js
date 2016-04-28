@@ -1,6 +1,49 @@
-var sessionSpoilersBlocked, updateLifetimeSpoilersBlocked, updateSessionSpoilersBlocked;
+var loadUserPreferencesAndUpdate, sessionSpoilersBlocked, storeUserPreferences, updateSessionSpoilersBlocked;
 
 sessionSpoilersBlocked = 0;
+
+document.addEventListener('DOMContentLoaded', (function(_this) {
+  return function() {
+    _this.blockingEnabledCheckbox = document.getElementById('blocking-enabled-toggle');
+    _this.blockingEnabledCheckbox.addEventListener('change', storeUserPreferences);
+    $('.onoffswitch-switch').css('background-image', 'url("assets/images/targaryen.png")');
+    loadUserPreferencesAndUpdate();
+    return setTimeout((function() {
+      return chrome.runtime.sendMessage({
+        fetchPopupTotal: true
+      }, function(response) {
+        if (response.newTotal) {
+          sessionSpoilersBlocked = response.newTotal;
+          return updateSessionSpoilersBlocked();
+        }
+      });
+    }), 1);
+  };
+})(this));
+
+loadUserPreferencesAndUpdate = (function(_this) {
+  return function() {
+    return chrome.storage.sync.get(DATA_KEY, function(result) {
+      _this.userPreferences = JSON.parse(result[DATA_KEY]);
+      return _this.blockingEnabledCheckbox.checked = _this.userPreferences.blockingEnabled;
+    });
+  };
+})(this);
+
+storeUserPreferences = (function(_this) {
+  return function() {
+    var data;
+    data = {};
+    data[DATA_KEY] = JSON.stringify({
+      blockingEnabled: _this.blockingEnabledCheckbox.checked
+    });
+    return chrome.storage.sync.set(data, function(response) {
+      return chrome.runtime.sendMessage({
+        userPreferencesUpdated: true
+      }, (function() {}));
+    });
+  };
+})(this);
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.newSpoilerBlocked) {
@@ -9,35 +52,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  return setTimeout((function() {
-    return chrome.runtime.sendMessage({
-      fetchPopupTotal: true
-    }, function(response) {
-      if (response.newTotal) {
-        sessionSpoilersBlocked = response.newTotal;
-        return updateSessionSpoilersBlocked();
-      }
-    });
-  }), 1);
-});
-
 updateSessionSpoilersBlocked = function() {
-  var newText;
-  newText = sessionSpoilersBlocked + " spoilers prevented in this session.";
-  return document.getElementById('num-spoilers-prevented').textContent = newText;
-};
-
-updateLifetimeSpoilersBlocked = function() {
   var _gaq, newText;
-  newText = lifetimeSpoilersBlocked + " spoilers prevented since the Long Summer began.";
-  document.getElementById('lifetime-spoilers-prevented').textContent = newText;
-  if (lifetimeSpoilersBlocked === 0) {
-    return;
-  }
-  chrome.storage.sync.set({
-    lifetimeSpoilersBlocked: lifetimeSpoilersBlocked
-  });
+  newText = sessionSpoilersBlocked + " spoilers prevented in this session.";
+  document.getElementById('num-spoilers-prevented').textContent = newText;
   _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-64072033-1']);
   _gaq.push(['_trackPageview']);

@@ -1,3 +1,6 @@
+# Chrome storage data key
+DATA_KEY = 'game-of-spoils'
+
 # jQuery selectors that specify elements to block on each supported site
 FACEBOOK_FEED_ELEMENTS_SELECTOR    = '.userContentWrapper'
 TWITTER_FEED_ELEMENTS_SELECTOR     = "[data-item-type='tweet']"

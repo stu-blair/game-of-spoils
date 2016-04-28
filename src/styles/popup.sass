@@ -1,0 +1,105 @@
+body#game-of-spoilers-popup
+  font-family: "Cinzel Decorative", "Segoe UI", "Lucida Grande", Tahoma, serif
+  font-size: 100%
+  min-width: 345px
+  text-align: center
+  background-color: #F3F3F3
+  #title
+    font-size: 30px
+    font-weight: bold
+  #subtitle
+    font-size: 15px
+  #stark-image
+    height: 98px
+
+  .setting-holder
+    height: 2em
+    line-height: 2.1em
+    font-size: 1.08em
+    .onoffswitch, .setting-text
+      float: left
+    .setting-text
+      padding-left: 1px
+
+  #num-spoilers-prevented
+    margin-top: 18px
+    border-top: 1px solid #C1BEBE
+    padding-top: 9px
+    padding-bottom: 3px
+
+  .onoffswitch
+    position: relative
+    width: 85px
+    -webkit-user-select:none
+    -moz-user-select:none
+    -ms-user-select: none
+    &:hover .onoffswitch-switch
+      background-color: #FF9C9C
+
+  .onoffswitch-checkbox
+    display: none
+
+  .onoffswitch-label
+    display: block
+    overflow: hidden
+    cursor: pointer
+    border: 2px solid black
+    border-radius: 20px
+    width: 76px
+
+  .onoffswitch-inner
+    display: block
+    width: 200%
+    margin-left: -100%
+    transition: margin 0.3s ease-in 0s
+
+  .onoffswitch-inner:before, .onoffswitch-inner:after
+    display: block
+    float: left
+    width: 50%
+    height: 30px
+    padding: 0
+    line-height: 30px
+    font-size: 14px
+    color: white
+    font-family: Trebuchet, Arial, sans-serif
+    font-weight: bold
+    box-sizing: border-box
+
+  .onoffswitch-inner:before
+    content: "ON"
+    padding-right: 27px
+    background-color: black
+    color: #FFFFFF
+
+  .onoffswitch-inner:after
+    content: "OFF"
+    padding-right: 9px
+    background-color: #EEEEEE
+    color: #999999
+    text-align: right
+
+  .onoffswitch-switch
+    display: block
+    width: 34px
+    margin: 0px
+    background-image: url("assets/images/targaryen.png")
+    background-color: white
+    background-size: 30px 30px
+    position: absolute
+    top: 0
+    bottom: 0
+    right: 49px
+    border-radius: 20px
+    transition: all 0.3s ease-in 0s
+    background-repeat: no-repeat
+    background-position: 2px 1px
+    border: 1px solid black
+
+
+  .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner
+    margin-left: 0
+
+  .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch
+    right: 5px
+

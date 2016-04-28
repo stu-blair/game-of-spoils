@@ -1,9 +1,11 @@
 .spoiler-glamour
+  font-family: "Lancelot", "Segoe UI", "Lucida Grande", Tahoma, serif
   position: absolute
   width: 100%
   height: 100%
   left: 0
   top: 0
+  padding: 6px 10px 0px 10px
   z-index: 1000000
   background: black !important
   color: white  !important
@@ -27,23 +29,22 @@
   &.small h3
     font-size: 18px !important
   &.redditized h3
-    font-size: 17px !important
+    font-size: 23px !important
     margin-top: 3px
-    display: inline-block
   h3
+    display: inline
     color: rgb(165, 213, 255) !important
-    font-size: 45px !important
-    padding-left: 8px
+    font-size: 35px !important
+    font-weight: normal
     margin-top: 12px
     opacity: 1
     text-transform: none !important
     background: black !important
-  .click-to-view-spoiler
+  h3.click-to-view-spoiler
     opacity: 0
-    color: red
+    color: red !important
     font-size: 35px
     padding-left: 16px
-    margin-top: 10px
   &:hover
     background: rgb(71, 24, 24)
     opacity: 0.95

@@ -20,7 +20,7 @@
   },
 
   "background": {
-    "scripts": ["scripts/background.js"]
+    "scripts": ["scripts/constants.js", "scripts/background.js"]
   },
 
   "content_scripts": [
@@ -32,7 +32,7 @@
         "http://www.reddit.com/*",   "https://www.reddit.com/*",
         "http://www.avclub.com/*",   "https://www.avclub.com/*"
       ],
-      "css": ["styles/content.css"],
+      "css": ["assets/fonts/lancelot.css", "styles/content.css"],
       "js":  ["scripts/vendor/jquery.min.js", "scripts/constants.js", "scripts/helpers.js", "scripts/content.js"]
     }
   ],

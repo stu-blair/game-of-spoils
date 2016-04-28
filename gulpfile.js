@@ -16,6 +16,10 @@ var tinylr     = require('tiny-lr');
 // Copy static folders to build directory
 gulp.task('update-static', function() {
 
+  del('build/assets/fonts/*');
+  gulp.src('src/assets/fonts/**')
+      .pipe(gulp.dest('build/assets/fonts'));
+
   del('build/assets/icons/*');
   gulp.src('src/assets/icons/**')
       .pipe(gulp.dest('build/assets/icons'));

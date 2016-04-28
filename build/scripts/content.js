@@ -1,8 +1,24 @@
-var exileTraitorousSpoiler, first_feed_elem_text, getDeathName, incrementBadgeNumber, initiateSpoilerBlocking, num_feed_elems, reddit_mode, searchForAndBlockSpoilers, smaller_font_mode, url;
+var $document, exileTraitorousSpoiler, first_feed_elem_text, getDeathName, incrementBadgeNumber, initialize, initiateSpoilerBlocking, num_feed_elems, searchForAndBlockSpoilers;
 
 first_feed_elem_text = null;
 
 num_feed_elems = null;
+
+this.smaller_font_mode = false;
+
+this.reddit_mode = false;
+
+$document = $(document);
+
+$document.ready(function() {
+  return chrome.runtime.sendMessage({
+    userPreferencesRequested: true
+  }, function(response) {
+    if (response.blockingEnabled) {
+      return initialize();
+    }
+  });
+});
 
 incrementBadgeNumber = function() {
   return chrome.runtime.sendMessage({
@@ -16,7 +32,7 @@ getDeathName = function() {
 
 initiateSpoilerBlocking = function(selector_string) {
   searchForAndBlockSpoilers(selector_string, true);
-  return $(document).scroll(function() {
+  return $document.scroll(function() {
     return debounce(function() {
       return searchForAndBlockSpoilers(selector_string);
     });
@@ -55,7 +71,7 @@ exileTraitorousSpoiler = function($traitor, dark_words_of_spoilage) {
   capitalized_spoiler_words = dark_words_of_spoilage.capitalizeFirstLetter();
   cl("A bespoiling traitor in our midst! the forbidden words hath been spake: '" + capitalized_spoiler_words + "'.");
   $traitor.addClass('glamoured');
-  glamour_string = "<div class='spoiler-glamour " + (smaller_font_mode ? 'small' : void 0) + " " + (reddit_mode ? 'redditized' : void 0) + "'> <h3 class='spoiler-obituary'>A potential spoiler here " + (getDeathName()) + ", because it dared mention the phrase '" + capitalized_spoiler_words + "'.</h3> <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3> </div>";
+  glamour_string = "<div class='spoiler-glamour " + (this.smaller_font_mode ? 'small' : '') + " " + (this.reddit_mode ? 'redditized' : '') + "'> <h3 class='spoiler-obituary'>A potential spoiler here " + (getDeathName()) + ", because it dared mention the phrase '" + capitalized_spoiler_words + "'.</h3> <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3> </div>";
   $(glamour_string).appendTo($traitor);
   incrementBadgeNumber();
   $glamour = $traitor.find('.spoiler-glamour');
@@ -70,22 +86,26 @@ exileTraitorousSpoiler = function($traitor, dark_words_of_spoilage) {
   });
 };
 
-url = window.location.href.toLowerCase();
-
-if (url.indexOf('facebook') > -1) {
-  initiateSpoilerBlocking(FACEBOOK_FEED_ELEMENTS_SELECTOR);
-} else if (url.indexOf('twitter') > -1) {
-  smaller_font_mode = true;
-  initiateSpoilerBlocking(TWITTER_FEED_ELEMENTS_SELECTOR);
-} else if (url.indexOf('news.google') > -1) {
-  smaller_font_mode = true;
-  initiateSpoilerBlocking(GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR);
-} else if (url.indexOf('reddit.com') > -1) {
-  reddit_mode = true;
-  if (url.search(GOT_SUBREDDITS_REGEX) === -1) {
-    initiateSpoilerBlocking(REDDIT_FEED_ELEMENTS_SELECTOR);
-  }
-} else if (url.indexOf('avclub.com') > -1) {
-  smaller_font_mode = true;
-  initiateSpoilerBlocking(AVCLUB_FEED_ELEMENTS_SELECTOR);
-}
+initialize = (function(_this) {
+  return function() {
+    var url;
+    url = window.location.href.toLowerCase();
+    if (url.indexOf('facebook') > -1) {
+      return initiateSpoilerBlocking(FACEBOOK_FEED_ELEMENTS_SELECTOR);
+    } else if (url.indexOf('twitter') > -1) {
+      _this.smaller_font_mode = true;
+      return initiateSpoilerBlocking(TWITTER_FEED_ELEMENTS_SELECTOR);
+    } else if (url.indexOf('news.google') > -1) {
+      _this.smaller_font_mode = true;
+      return initiateSpoilerBlocking(GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR);
+    } else if (url.indexOf('reddit.com') > -1) {
+      _this.reddit_mode = true;
+      if (url.search(GOT_SUBREDDITS_REGEX) === -1) {
+        return initiateSpoilerBlocking(REDDIT_FEED_ELEMENTS_SELECTOR);
+      }
+    } else if (url.indexOf('avclub.com') > -1) {
+      _this.smaller_font_mode = true;
+      return initiateSpoilerBlocking(AVCLUB_FEED_ELEMENTS_SELECTOR);
+    }
+  };
+})(this);

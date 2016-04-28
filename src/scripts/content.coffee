@@ -1,5 +1,13 @@
 first_feed_elem_text = null
 num_feed_elems       = null
+@smaller_font_mode = false
+@reddit_mode       = false
+$document = $(document)
+
+$document.ready ->
+  chrome.runtime.sendMessage { userPreferencesRequested: true }, (response) ->
+    initialize() if response.blockingEnabled
+
 
 incrementBadgeNumber = ->
   chrome.runtime.sendMessage { incrementBadge: true }, (->)
@@ -11,7 +19,7 @@ getDeathName = ->
 
 initiateSpoilerBlocking = (selector_string) ->
   searchForAndBlockSpoilers selector_string, true
-  $(document).scroll ->
+  $document.scroll ->
     debounce -> searchForAndBlockSpoilers(selector_string)
 
 
@@ -39,7 +47,7 @@ exileTraitorousSpoiler = ($traitor, dark_words_of_spoilage) ->
   capitalized_spoiler_words = dark_words_of_spoilage.capitalizeFirstLetter()
   cl "A bespoiling traitor in our midst! the forbidden words hath been spake: '#{capitalized_spoiler_words}'."
   $traitor.addClass 'glamoured'
-  glamour_string = "<div class='spoiler-glamour #{if smaller_font_mode then 'small'} #{if reddit_mode then 'redditized'}'>
+  glamour_string = "<div class='spoiler-glamour #{if @smaller_font_mode then 'small' else ''} #{if @reddit_mode then 'redditized' else ''}'>
                       <h3 class='spoiler-obituary'>A potential spoiler here #{getDeathName()}, because it dared mention the phrase '#{capitalized_spoiler_words}'.</h3>
                       <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3>
                     </div>"
@@ -52,24 +60,26 @@ exileTraitorousSpoiler = ($traitor, dark_words_of_spoilage) ->
     setTimeout (-> $glamour.remove()), 3500
 
 
+
 # Initialize page-specific spoiler-blocking, if page is supported
-url = window.location.href.toLowerCase()
-if url.indexOf('facebook') > -1
-  initiateSpoilerBlocking FACEBOOK_FEED_ELEMENTS_SELECTOR
+initialize = =>
+  url = window.location.href.toLowerCase()
+  if url.indexOf('facebook') > -1
+    initiateSpoilerBlocking FACEBOOK_FEED_ELEMENTS_SELECTOR
 
-else if url.indexOf('twitter') > -1
-  smaller_font_mode = true
-  initiateSpoilerBlocking TWITTER_FEED_ELEMENTS_SELECTOR
+  else if url.indexOf('twitter') > -1
+    @smaller_font_mode = true
+    initiateSpoilerBlocking TWITTER_FEED_ELEMENTS_SELECTOR
 
-else if url.indexOf('news.google') > -1
-  smaller_font_mode = true
-  initiateSpoilerBlocking GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR
+  else if url.indexOf('news.google') > -1
+    @smaller_font_mode = true
+    initiateSpoilerBlocking GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR
 
-else if url.indexOf('reddit.com') > -1
-  reddit_mode = true
-  if url.search(GOT_SUBREDDITS_REGEX) == -1
-    initiateSpoilerBlocking REDDIT_FEED_ELEMENTS_SELECTOR
+  else if url.indexOf('reddit.com') > -1
+    @reddit_mode = true
+    if url.search(GOT_SUBREDDITS_REGEX) == -1
+      initiateSpoilerBlocking REDDIT_FEED_ELEMENTS_SELECTOR
 
-else if url.indexOf('avclub.com') > -1
-  smaller_font_mode = true
-  initiateSpoilerBlocking AVCLUB_FEED_ELEMENTS_SELECTOR
+  else if url.indexOf('avclub.com') > -1
+    @smaller_font_mode = true
+    initiateSpoilerBlocking AVCLUB_FEED_ELEMENTS_SELECTOR
