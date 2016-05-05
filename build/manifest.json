@@ -26,13 +26,13 @@
   "content_scripts": [
     {
       "matches": [
-        "http://www.facebook.com/*",  "https://www.facebook.com/*",
-        "http://twitter.com/*",       "https://twitter.com/*",
-        "http://www.reddit.com/*",    "https://www.reddit.com/*",
-        "http://www.avclub.com/*",    "https://www.avclub.com/*",
-        "http://news.google.com/*",   "https://news.google.com/*",
-        "http://news.google.co.uk/*", "https://news.google.co.uk/*",
-        "http://news.google.co.in/*", "https://news.google.co.in/*"
+        "*://www.facebook.com/*",
+        "*://twitter.com/*",
+        "*://www.reddit.com/*",
+        "*://www.avclub.com/*",
+        "*://news.google.com/*",
+        "*://news.google.co.uk/*",
+        "*://news.google.co.in/*"
       ],
       "css": ["assets/fonts/lancelot.css", "styles/content.css"],
       "js":  ["scripts/vendor/jquery.min.js", "scripts/constants.js", "scripts/helpers.js", "scripts/content.js"]
