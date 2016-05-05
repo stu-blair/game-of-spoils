@@ -1,4 +1,4 @@
-var AVCLUB_FEED_ELEMENTS_SELECTOR, DATA_KEY, DEATH_NAMES, FACEBOOK_FEED_ELEMENTS_SELECTOR, GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR, GOT_RELATED_SUBREDDITS, GOT_SUBREDDITS_REGEX, REDDIT_FEED_ELEMENTS_SELECTOR, SPOILER_WORDS_LIST, SPOILER_WORDS_REGEX, TWITTER_FEED_ELEMENTS_SELECTOR;
+var AVCLUB_FEED_ELEMENTS_SELECTOR, DATA_KEY, DEATH_NAMES, FACEBOOK_FEED_ELEMENTS_SELECTOR, GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR, GOT_RELATED_SUBREDDITS, GOT_SUBREDDITS_REGEX, REDDIT_FEED_ELEMENTS_SELECTOR, SLACK_FEED_ELEMENTS_SELECTOR, SPOILER_WORDS_LIST, SPOILER_WORDS_REGEX, TWITTER_FEED_ELEMENTS_SELECTOR;
 
 DATA_KEY = 'game-of-spoils';
 
@@ -11,6 +11,8 @@ GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = '.blended-wrapper';
 REDDIT_FEED_ELEMENTS_SELECTOR = '.sitetable > .thing.link:visible';
 
 AVCLUB_FEED_ELEMENTS_SELECTOR = '.item, article.short';
+
+SLACK_FEED_ELEMENTS_SELECTOR = 'ts-message';
 
 SPOILER_WORDS_LIST = ['#got', 'arya stark', 'asoiaf', 'azor ahai', 'baelish', 'baratheon', 'bloodraven', 'braavos', 'brienne of tarth', 'bran stark', 'casterly rock', 'cersei', 'd.b. weiss', 'sandor clegane', 'daenerys', 'david benioff', 'davos seaworth', 'dornish', 'dothraki', 'dreadfort', 'game of thrones', 'gameofthrone', 'greyjoy', 'highgarden', 'house bolton', 'house stark', 'house tyrell', 'howland reed', 'jojen reed', 'jon snow', 'khaleesi', "king's landing", 'ady stonehea', 'lannisport', 'lannister', 'littlefinger', 'meereen', 'melisandre', 'myrcella', 'olenna tyrell', 'podrick payne', 'queen of thorns', 'ramsay bolton', 'roose bolton', 'ned stark', 'sansa stark', 'sothoryos', 'targaryen', 'tower of joy', 'tyrion', 'vaes dothrak', 'viserys', 'westeros', 'walder frey', 'wildling', 'winterfell', 'white walker', 'whitewalker'];
 

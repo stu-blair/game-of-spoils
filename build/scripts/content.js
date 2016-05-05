@@ -112,6 +112,9 @@ initialize = (function(_this) {
     } else if (url.indexOf('avclub.com') > -1) {
       _this.smaller_font_mode = true;
       return initiateSpoilerBlocking(AVCLUB_FEED_ELEMENTS_SELECTOR);
+    } else if (url.indexOf('slack.com') > -1) {
+      _this.smaller_font_mode = true;
+      return initiateSpoilerBlocking(SLACK_FEED_ELEMENTS_SELECTOR);
     }
   };
 })(this);
