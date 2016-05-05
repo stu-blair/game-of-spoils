@@ -12,10 +12,6 @@ debounce = function(fn_to_debounce) {
   }), 150);
 };
 
-String.prototype.capitalizeFirstLetter = function() {
-  return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
 hasClass = function(element, className) {
   if (element.classList) {
     return element.classList.contains(className);
@@ -30,6 +26,10 @@ addClass = function(element, className) {
   } else if (!hasClass(element, className)) {
     return element.className += " " + className;
   }
+};
+
+String.prototype.capitalizeFirstLetter = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
 loadUserPreferences = (function(_this) {
