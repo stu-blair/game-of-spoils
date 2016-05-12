@@ -27,6 +27,7 @@
     {
       "matches": [
         "*://www.facebook.com/*",
+        "*://feedly.com/*",
         "*://twitter.com/*",
         "*://www.reddit.com/*",
         "*://www.avclub.com/*",

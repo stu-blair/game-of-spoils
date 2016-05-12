@@ -91,3 +91,7 @@ initialize = =>
   else if url.indexOf('slack.com') > -1
     @smaller_font_mode = true
     initiateSpoilerBlocking SLACK_FEED_ELEMENTS_SELECTOR
+
+  else if url.indexOf('feedly.com') > -1
+    @smaller_font_mode = true
+    initiateSpoilerBlocking FEEDLY_ELEMENTS_SELECTOR

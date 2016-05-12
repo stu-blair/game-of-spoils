@@ -8,6 +8,7 @@ GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = '.blended-wrapper'
 REDDIT_FEED_ELEMENTS_SELECTOR      = '.sitetable > .thing.link:visible'
 AVCLUB_FEED_ELEMENTS_SELECTOR      = '.item, article.short'
 SLACK_FEED_ELEMENTS_SELECTOR       = 'ts-message'
+FEEDLY_ELEMENTS_SELECTOR           = '.u5Entry > div, .u0Entry, .topRecommendedEntry, .u4Entry > div, .u100Frame, .u12Entry > div'
 
 
 # GoT-specific words that are potentially spoiler-ific and thus trigger a spoiler blocker
