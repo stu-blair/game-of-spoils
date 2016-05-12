@@ -79,8 +79,9 @@ exileTraitorousSpoiler = function($traitor, dark_words_of_spoilage) {
   $(glamour_string).appendTo($traitor);
   incrementBadgeNumber();
   $glamour = $traitor.find('.spoiler-glamour');
-  return $glamour.on('click', function() {
+  return $glamour.on('click', function(ev) {
     var specific_words_for_confirm;
+    ev.stopPropagation();
     specific_words_for_confirm = this.show_specific_words ? "mention of '" + capitalized_spoiler_words + "'" : "spoiler";
     if (!confirm("Are you sure you want to view this potentially spoiler-ific " + specific_words_for_confirm + "?")) {
       return;
