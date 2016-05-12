@@ -10,7 +10,7 @@ GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = '.blended-wrapper';
 
 REDDIT_FEED_ELEMENTS_SELECTOR = '.sitetable > .thing.link:visible';
 
-AVCLUB_FEED_ELEMENTS_SELECTOR = '.item, article.short';
+AVCLUB_FEED_ELEMENTS_SELECTOR = '.item, article.short, article > .heading';
 
 SLACK_FEED_ELEMENTS_SELECTOR = 'ts-message';
 
