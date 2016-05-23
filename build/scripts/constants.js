@@ -20,7 +20,7 @@ SPOILER_WORDS_LIST = ['#got', 'ady stonehea', 'aidan gillen', 'alfie allen', 'ar
 
 SPOILER_WORDS_REGEX = new RegExp(SPOILER_WORDS_LIST.join('|'), 'i');
 
-DEATH_NAMES = ['was grimly beheaded for desertion', "was burned at the stake to appease R'hllor", 'was slowly poisoned over a period of many fortnights', 'was torn asunder by six direwolves', 'was incinerated by hot dragon breath', 'was slain by a shadow', 'was defeated during a trial by combat', 'was infected with greyscale and quarantined permanently', 'warged into a dead cat', 'was too far north when winter came', 'did not live through the Long Night', 'is dark and full of terrors', 'caught toxoplasmosis from Ser Pounce', 'was murdered by its very own nuncle', 'was impaled by a lance at a tournament by a lowly hedge knight'];
+DEATH_NAMES = ["got burned at the stake to appease R'hllor", 'contracted greyscale and was quarantined permanently', 'did not live through the Long Night', 'drank way too much Moon Tea', 'found itself too far north when winter came', 'is dark and full of terrors', 'lost in trial by combat', 'did not win the game of thrones', 'suffered terribly at the paws of Ser Pounce', 'warged into a dead cat', 'was grimly beheaded for desertion', 'was impaled by a lance at a tournament by a lowly hedge knight', 'was incinerated by hot dragon breath', 'was murdered by its very own nuncle', 'was slain by a shadow', 'was slowly poisoned over a period of many fortnights', 'was torn asunder by six direwolves'];
 
 GOT_RELATED_SUBREDDITS = ['gameofthrones', 'asoiaf', 'iceandfire', 'agotboardgame', 'gamesofthrones', 'westeros', 'thronescomics', 'asongofmemesandrage', 'earthoficeandfire'];
 
