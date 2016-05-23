@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', (function(_this) {
     _this.extraWordsHolder = document.getElementById('extra-words-to-block');
     _this.blockingEnabledToggle.addEventListener('change', storeUserPreferences);
     _this.showSpecificWordToggle.addEventListener('change', storeUserPreferences);
-    _this.extraWordsHolder.addEventListener('keyup', storeUserPreferences);
+    _this.extraWordsHolder.addEventListener('keyup paste blur', storeUserPreferences);
     $('.onoffswitch-switch').css('background-image', 'url("assets/images/targaryen.png")');
     loadUserPreferencesAndUpdate();
     return setTimeout((function() {
