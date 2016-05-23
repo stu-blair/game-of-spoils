@@ -44,6 +44,7 @@ SPOILER_WORDS_LIST = [
   'greyjoy'
   'gwendoline christie'
   'highgarden'
+  'hodor'
   'house bolton'
   'house stark'
   'house tyrell'
