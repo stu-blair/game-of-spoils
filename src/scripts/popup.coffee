@@ -3,8 +3,10 @@ sessionSpoilersBlocked  = 0
 document.addEventListener 'DOMContentLoaded', =>
   @blockingEnabledToggle  = document.getElementById 'blocking-enabled-toggle'
   @showSpecificWordToggle = document.getElementById 'show-specific-word-toggle'
+  @extraWordsHolder       = document.getElementById 'extra-words-to-block'
   @blockingEnabledToggle.addEventListener  'change', storeUserPreferences
   @showSpecificWordToggle.addEventListener 'change', storeUserPreferences
+  @extraWordsHolder.addEventListener 'keyup paste blur', storeUserPreferences
 
   $('.onoffswitch-switch').css 'background-image', 'url("assets/images/targaryen.png")'
 
@@ -20,15 +22,18 @@ document.addEventListener 'DOMContentLoaded', =>
 
 loadUserPreferencesAndUpdate = =>
   loadUserPreferences =>
-    @blockingEnabledToggle.checked = @userPreferences.blockingEnabled
+    @blockingEnabledToggle.checked  = @userPreferences.blockingEnabled
     @showSpecificWordToggle.checked = @userPreferences.showSpecificWordEnabled
+    @extraWordsHolder.value         = @userPreferences.extraWordsToBlock
 
 storeUserPreferences = =>
   data = {}
   data[DATA_KEY] = JSON.stringify {
     blockingEnabled: @blockingEnabledToggle.checked
     showSpecificWordEnabled: @showSpecificWordToggle.checked
+    extraWordsToBlock: @extraWordsHolder.value
   }
+  cl "Storing user preferences: #{data}"
   chrome.storage.sync.set data, (response) ->
     chrome.runtime.sendMessage { userPreferencesUpdated: true }, (->)
 

@@ -32,6 +32,10 @@ String.prototype.capitalizeFirstLetter = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
+String.prototype.escapeRegex = function() {
+  return this.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+};
+
 loadUserPreferences = (function(_this) {
   return function(callback) {
     return chrome.storage.sync.get(DATA_KEY, function(result) {
@@ -40,7 +44,8 @@ loadUserPreferences = (function(_this) {
       if (!userPreferencesJSONString) {
         _this.userPreferences = {
           blockingEnabled: true,
-          showSpecificWordEnabled: true
+          showSpecificWordEnabled: true,
+          extraWordsToBlock: ''
         };
       } else {
         _this.userPreferences = JSON.parse(userPreferencesJSONString);
@@ -49,6 +54,9 @@ loadUserPreferences = (function(_this) {
         }
         if (!_this.userPreferences.hasOwnProperty('showSpecificWordEnabled')) {
           _this.userPreferences.showSpecificWordEnabled = true;
+        }
+        if (!_this.userPreferences.hasOwnProperty('extraWordsToBlock')) {
+          _this.userPreferences.extraWordsToBlock = '';
         }
       }
       if (callback) {

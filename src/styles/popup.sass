@@ -21,17 +21,33 @@
         color: black
         border-bottom-color: black
   #stark-image
-    height: 98px
+    height: 88px
+    margin-top: -6px
+    margin-bottom: -14px
 
   .setting-holder
     height: 2em
     line-height: 2.1em
     font-size: 1.08em
     margin-top: 4px
+    textarea
+      border-radius: 6px
+      border-color: #c1bebe
+      padding: 4px
+      width: 74%
+      height: 2em
+      outline: none
+      transition: width 0.5s ease-in 0s, height 0.5s ease-in 0s
+      &:focus
+        width: 90%
+        height: 5em
     .onoffswitch, .setting-text
       float: left
     .setting-text
       padding-left: 1px
+      &.centered
+        width: 100%
+        text-decoration: underline
 
   #num-spoilers-prevented
     margin-top: 18px

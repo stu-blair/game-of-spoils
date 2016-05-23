@@ -6,8 +6,10 @@ document.addEventListener('DOMContentLoaded', (function(_this) {
   return function() {
     _this.blockingEnabledToggle = document.getElementById('blocking-enabled-toggle');
     _this.showSpecificWordToggle = document.getElementById('show-specific-word-toggle');
+    _this.extraWordsHolder = document.getElementById('extra-words-to-block');
     _this.blockingEnabledToggle.addEventListener('change', storeUserPreferences);
     _this.showSpecificWordToggle.addEventListener('change', storeUserPreferences);
+    _this.extraWordsHolder.addEventListener('keyup', storeUserPreferences);
     $('.onoffswitch-switch').css('background-image', 'url("assets/images/targaryen.png")');
     loadUserPreferencesAndUpdate();
     return setTimeout((function() {
@@ -27,7 +29,8 @@ loadUserPreferencesAndUpdate = (function(_this) {
   return function() {
     return loadUserPreferences(function() {
       _this.blockingEnabledToggle.checked = _this.userPreferences.blockingEnabled;
-      return _this.showSpecificWordToggle.checked = _this.userPreferences.showSpecificWordEnabled;
+      _this.showSpecificWordToggle.checked = _this.userPreferences.showSpecificWordEnabled;
+      return _this.extraWordsHolder.value = _this.userPreferences.extraWordsToBlock;
     });
   };
 })(this);
@@ -38,8 +41,10 @@ storeUserPreferences = (function(_this) {
     data = {};
     data[DATA_KEY] = JSON.stringify({
       blockingEnabled: _this.blockingEnabledToggle.checked,
-      showSpecificWordEnabled: _this.showSpecificWordToggle.checked
+      showSpecificWordEnabled: _this.showSpecificWordToggle.checked,
+      extraWordsToBlock: _this.extraWordsHolder.value
     });
+    cl("Storing user preferences: " + data);
     return chrome.storage.sync.set(data, function(response) {
       return chrome.runtime.sendMessage({
         userPreferencesUpdated: true

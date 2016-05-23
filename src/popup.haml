@@ -31,6 +31,9 @@
           %span.onoffswitch-inner
           %span.onoffswitch-switch
       .setting-text= 'Show specific phrase blocked'
+    .setting-holder{style: "height: auto;"}
+      .setting-text.centered= 'Add extra phrases to block'
+      %textarea#extra-words-to-block{placeholder: "Separate with commas like: Jon Snow, Hodor, etc. Note that it matches parts of words, and capitalization is ignored, so 'GoT' would block any word with 'got' in it, like 'gotcha'."}
 
     #num-spoilers-prevented
     #lifetime-spoilers-prevented

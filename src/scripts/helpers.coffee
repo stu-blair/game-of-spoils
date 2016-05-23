@@ -25,6 +25,9 @@ addClass = (element, className) ->
 String::capitalizeFirstLetter = ->
   @charAt(0).toUpperCase() + @slice(1)
 
+String::escapeRegex = ->
+  @.replace /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"
+
 # Loads user preferences from chrome storage, setting default values
 # if any preferences are undefined
 loadUserPreferences = (callback) =>
@@ -34,11 +37,13 @@ loadUserPreferences = (callback) =>
       @userPreferences = {
         blockingEnabled: true
         showSpecificWordEnabled: true
+        extraWordsToBlock: ''
       }
     else
       @userPreferences = JSON.parse userPreferencesJSONString
       @userPreferences.blockingEnabled         = true unless @userPreferences.hasOwnProperty 'blockingEnabled'
       @userPreferences.showSpecificWordEnabled = true unless @userPreferences.hasOwnProperty 'showSpecificWordEnabled'
+      @userPreferences.extraWordsToBlock       = ''   unless @userPreferences.hasOwnProperty 'extraWordsToBlock'
     callback() if callback
 
 

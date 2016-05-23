@@ -1,13 +1,20 @@
 first_feed_elem_text = null
 num_feed_elems       = null
-@smaller_font_mode = false
-@reddit_mode       = false
-@show_specific_words = true
+@smaller_font_mode   = false
+@reddit_mode         = false
+settings =
+  show_specific_words: true
+  spoiler_words_regex: null
 $document = $(document)
 
 $document.ready ->
-  chrome.runtime.sendMessage { userPreferencesRequested: true }, (response) ->
-    @show_specific_words = response.showSpecificWordEnabled
+  chrome.runtime.sendMessage { userPreferencesRequested: true }, (response) =>
+    settings.show_specific_words  = response.showSpecificWordEnabled
+    extra_words_to_block = response.extraWordsToBlock
+                                   .split(',')
+                                   .map((word) -> word.trim().escapeRegex())
+                                   .filter((word) -> !!word)
+    settings.spoiler_words_regex = new RegExp(SPOILER_WORDS_LIST.concat(extra_words_to_block).join('|'), 'i')
     initialize() if response.blockingEnabled
 
 
@@ -25,7 +32,7 @@ initiateSpoilerBlocking = (selector_string) ->
     debounce -> searchForAndBlockSpoilers(selector_string)
 
 
-searchForAndBlockSpoilers = (feed_elements_selector, force_update) ->
+searchForAndBlockSpoilers = (feed_elements_selector, force_update) =>
   $new_feed_elems = $(feed_elements_selector)
   return if $new_feed_elems.length == 0
   new_length      = $new_feed_elems.length
@@ -38,7 +45,7 @@ searchForAndBlockSpoilers = (feed_elements_selector, force_update) ->
       # Ignore elements that are already glamoured or already designated safe
       return if @className.search(/true-and-leal|glamoured/) > -1
       # Search textContent of the element to see if it contains any spoilers
-      matchedSpoiler = @textContent.match SPOILER_WORDS_REGEX
+      matchedSpoiler = @textContent.match settings.spoiler_words_regex
       if matchedSpoiler == null
         addClass this, 'true-and-leal'
       else
@@ -49,7 +56,7 @@ exileTraitorousSpoiler = ($traitor, dark_words_of_spoilage) ->
   capitalized_spoiler_words = dark_words_of_spoilage.capitalizeFirstLetter()
   cl "A bespoiling traitor in our midst! the forbidden words hath been spake: '#{capitalized_spoiler_words}'."
   $traitor.addClass 'glamoured'
-  specific_words = if @show_specific_words then ", because it dared mention the phrase '#{capitalized_spoiler_words}'" else ""
+  specific_words = if settings.show_specific_words then ", because it dared mention the phrase '#{capitalized_spoiler_words}'" else ""
   glamour_string = "<div class='spoiler-glamour #{if @smaller_font_mode then 'small' else ''} #{if @reddit_mode then 'redditized' else ''}'>
                       <h3 class='spoiler-obituary'>A potential spoiler here #{getDeathName()}#{specific_words}.</h3>
                       <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3>
@@ -59,7 +66,7 @@ exileTraitorousSpoiler = ($traitor, dark_words_of_spoilage) ->
   $glamour = $traitor.find '.spoiler-glamour'
   $glamour.on 'click', (ev) ->
     ev.stopPropagation()
-    specific_words_for_confirm = if @show_specific_words then "mention of '#{capitalized_spoiler_words}'" else "spoiler"
+    specific_words_for_confirm = if settings.show_specific_words then "mention of '#{capitalized_spoiler_words}'" else "spoiler"
     return unless confirm "Are you sure you want to view this potentially spoiler-ific #{specific_words_for_confirm}?"
     $glamour.addClass 'revealed'
     setTimeout (-> $glamour.remove()), 3500
