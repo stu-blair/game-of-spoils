@@ -6,7 +6,7 @@ document.addEventListener 'DOMContentLoaded', =>
   @extraWordsHolder       = document.getElementById 'extra-words-to-block'
   @blockingEnabledToggle.addEventListener  'change', storeUserPreferences
   @showSpecificWordToggle.addEventListener 'change', storeUserPreferences
-  @extraWordsHolder.addEventListener 'keyup paste blur', storeUserPreferences
+  @extraWordsHolder.addEventListener 'keyup', storeUserPreferences
 
   $('.onoffswitch-switch').css 'background-image', 'url("assets/images/targaryen.png")'
 
