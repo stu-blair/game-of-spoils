@@ -52,6 +52,7 @@ SPOILER_WORDS_LIST = [
   'howland reed'
   'iain glen'
   'ian mcelhinney'
+  'iron throne'
   'isaac hempstead wright'
   'jerome flynn'
   'john bradley'
