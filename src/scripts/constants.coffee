@@ -3,7 +3,7 @@ DATA_KEY = 'game-of-spoils'
 
 # jQuery selectors that specify elements to block on each supported site
 FACEBOOK_FEED_ELEMENTS_SELECTOR    = '.userContentWrapper'
-TWITTER_FEED_ELEMENTS_SELECTOR     = "[data-item-type='tweet']"
+TWITTER_FEED_ELEMENTS_SELECTOR     = "[data-item-type='tweet'], .trend-item"
 GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = '.blended-wrapper'
 REDDIT_FEED_ELEMENTS_SELECTOR      = '.sitetable > .thing.link:visible'
 AVCLUB_FEED_ELEMENTS_SELECTOR      = '.item, article.short, article > .heading'

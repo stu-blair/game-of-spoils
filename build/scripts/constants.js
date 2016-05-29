@@ -4,7 +4,7 @@ DATA_KEY = 'game-of-spoils';
 
 FACEBOOK_FEED_ELEMENTS_SELECTOR = '.userContentWrapper';
 
-TWITTER_FEED_ELEMENTS_SELECTOR = "[data-item-type='tweet']";
+TWITTER_FEED_ELEMENTS_SELECTOR = "[data-item-type='tweet'], .trend-item";
 
 GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = '.blended-wrapper';
 
