@@ -91,9 +91,7 @@ exileTraitorousSpoiler = function($traitor, dark_words_of_spoilage) {
   specific_words = settings.show_specific_words ? ", because it dared mention the phrase '" + capitalized_spoiler_words + "'" : "";
   glamour_string = "<div class='spoiler-glamour " + (this.smaller_font_mode ? 'small' : '') + " " + (this.reddit_mode ? 'redditized' : '') + "'> <h3 class='spoiler-obituary'>A potential spoiler here " + (getDeathName()) + specific_words + ".</h3> <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3> </div>";
   $(glamour_string).appendTo($traitor);
-  setTimeout((function() {
-    return incrementBadgeNumber();
-  }), 10);
+  incrementBadgeNumber();
   $glamour = $traitor.find('.spoiler-glamour');
   return $glamour.on('click', function(ev) {
     var specific_words_for_confirm;
@@ -140,6 +138,9 @@ initialize = (function(_this) {
     } else if (url.indexOf('youtube.com') > -1) {
       _this.smaller_font_mode = true;
       return initiateSpoilerBlocking(YOUTUBE_ELEMENTS_SELECTOR);
+    } else if (url.indexOf('buzzfeed.com') > -1) {
+      _this.smaller_font_mode = true;
+      return initiateSpoilerBlocking(BUZZFEED_ELEMENTS_SELECTOR);
     }
   };
 })(this);
