@@ -2,18 +2,18 @@
 DATA_KEY = 'game-of-spoils'
 
 # jQuery selectors that specify elements to block on each supported site
-FACEBOOK_FEED_ELEMENTS_SELECTOR    = '.userContentWrapper, #pagelet_trending_tags_and_topics ul > li'
-TWITTER_FEED_ELEMENTS_SELECTOR     = "[data-item-type='tweet'], .trend-item"
-GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = '.blended-wrapper'
-REDDIT_FEED_ELEMENTS_SELECTOR      = '.sitetable > .thing.link:visible'
 AVCLUB_FEED_ELEMENTS_SELECTOR      = '.item, article.short, article > .heading'
-SLACK_FEED_ELEMENTS_SELECTOR       = 'ts-message'
-FEEDLY_ELEMENTS_SELECTOR           = '.u5Entry > div, .u0Entry, .topRecommendedEntry, .u4Entry > div, .u100Frame, .u12Entry > div'
-GOOGLE_PLUS_ELEMENTS_SELECTOR      = 'div[id^="update-"], c-wiz div div c-wiz'
-YOUTUBE_ELEMENTS_SELECTOR          = '.yt-lockup, .related-list-item, .comment-renderer-text'
 BUZZFEED_ELEMENTS_SELECTOR         = '.lede'
+FACEBOOK_FEED_ELEMENTS_SELECTOR    = '.userContentWrapper, #pagelet_trending_tags_and_topics ul > li'
+FEEDLY_ELEMENTS_SELECTOR           = '.u5Entry > div, .u0Entry, .topRecommendedEntry, .u4Entry > div, .u100Frame, .u12Entry > div'
 GIZMODO_ELEMENTS_SELECTOR          = '.featured-item, article'
+GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = '.blended-wrapper'
+GOOGLE_PLUS_ELEMENTS_SELECTOR      = 'div[id^="update-"], c-wiz div div c-wiz'
+REDDIT_FEED_ELEMENTS_SELECTOR      = '.sitetable > .thing.link:visible'
+SLACK_FEED_ELEMENTS_SELECTOR       = 'ts-message'
 TUMBLR_ELEMENTS_SELECTOR           = '.post_container, article'
+TWITTER_FEED_ELEMENTS_SELECTOR     = "[data-item-type='tweet'], .trend-item"
+YOUTUBE_ELEMENTS_SELECTOR          = '.yt-lockup, .related-list-item, .comment-renderer-text'
 
 # GoT-specific words that are potentially spoiler-ific and thus trigger a spoiler blocker
 SPOILER_WORDS_LIST = [

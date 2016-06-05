@@ -26,19 +26,19 @@
   "content_scripts": [
     {
       "matches": [
-        "*://www.facebook.com/*",
         "*://feedly.com/*",
-        "*://twitter.com/*",
-        "*://www.reddit.com/*",
-        "*://www.avclub.com/*",
-        "*://news.google.com/*",
-        "*://news.google.co.uk/*",
-        "*://news.google.co.in/*",
-        "*://plus.google.com/*",
-        "*://www.youtube.com/*",
-        "*://www.buzzfeed.com/*",
         "*://gizmodo.com/*",
-        "*://www.tumblr.com/*"
+        "*://news.google.co.in/*",
+        "*://news.google.co.uk/*",
+        "*://news.google.com/*",
+        "*://plus.google.com/*",
+        "*://twitter.com/*",
+        "*://www.avclub.com/*",
+        "*://www.buzzfeed.com/*",
+        "*://www.facebook.com/*",
+        "*://www.reddit.com/*",
+        "*://www.tumblr.com/*",
+        "*://www.youtube.com/*"
       ],
       "css": ["assets/fonts/lancelot.css", "styles/content.css"],
       "js":  ["scripts/vendor/jquery.min.js", "scripts/constants.js", "scripts/helpers.js", "scripts/content.js"]
