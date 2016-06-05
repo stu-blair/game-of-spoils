@@ -33,7 +33,8 @@
         "*://www.avclub.com/*",
         "*://news.google.com/*",
         "*://news.google.co.uk/*",
-        "*://news.google.co.in/*"
+        "*://news.google.co.in/*",
+        "*://plus.google.com/*"
       ],
       "css": ["assets/fonts/lancelot.css", "styles/content.css"],
       "js":  ["scripts/vendor/jquery.min.js", "scripts/constants.js", "scripts/helpers.js", "scripts/content.js"]

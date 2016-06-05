@@ -103,3 +103,6 @@ initialize = =>
   else if url.indexOf('feedly.com') > -1
     @smaller_font_mode = true
     initiateSpoilerBlocking FEEDLY_ELEMENTS_SELECTOR
+
+  else if url.indexOf('plus.google.com') > -1
+    initiateSpoilerBlocking GOOGLE_PLUS_ELEMENTS_SELECTOR

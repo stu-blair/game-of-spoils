@@ -9,7 +9,7 @@ REDDIT_FEED_ELEMENTS_SELECTOR      = '.sitetable > .thing.link:visible'
 AVCLUB_FEED_ELEMENTS_SELECTOR      = '.item, article.short, article > .heading'
 SLACK_FEED_ELEMENTS_SELECTOR       = 'ts-message'
 FEEDLY_ELEMENTS_SELECTOR           = '.u5Entry > div, .u0Entry, .topRecommendedEntry, .u4Entry > div, .u100Frame, .u12Entry > div'
-
+GOOGLE_PLUS_ELEMENTS_SELECTOR      = 'div[id^="update-"], c-wiz div div c-wiz'
 
 # GoT-specific words that are potentially spoiler-ific and thus trigger a spoiler blocker
 SPOILER_WORDS_LIST = [

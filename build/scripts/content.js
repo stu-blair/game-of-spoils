@@ -133,6 +133,8 @@ initialize = (function(_this) {
     } else if (url.indexOf('feedly.com') > -1) {
       _this.smaller_font_mode = true;
       return initiateSpoilerBlocking(FEEDLY_ELEMENTS_SELECTOR);
+    } else if (url.indexOf('plus.google.com') > -1) {
+      return initiateSpoilerBlocking(GOOGLE_PLUS_ELEMENTS_SELECTOR);
     }
   };
 })(this);
