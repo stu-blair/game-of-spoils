@@ -62,7 +62,7 @@ exileTraitorousSpoiler = ($traitor, dark_words_of_spoilage) ->
                       <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3>
                     </div>"
   $(glamour_string).appendTo $traitor
-  incrementBadgeNumber()
+  setTimeout((-> incrementBadgeNumber()), 10)
   $glamour = $traitor.find '.spoiler-glamour'
   $glamour.on 'click', (ev) ->
     ev.stopPropagation()
@@ -106,3 +106,7 @@ initialize = =>
 
   else if url.indexOf('plus.google.com') > -1
     initiateSpoilerBlocking GOOGLE_PLUS_ELEMENTS_SELECTOR
+
+  else if url.indexOf('youtube.com') > -1
+    @smaller_font_mode = true
+    initiateSpoilerBlocking YOUTUBE_ELEMENTS_SELECTOR
