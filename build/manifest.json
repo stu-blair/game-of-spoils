@@ -37,7 +37,8 @@
         "*://plus.google.com/*",
         "*://www.youtube.com/*",
         "*://www.buzzfeed.com/*",
-        "*://gizmodo.com/*"
+        "*://gizmodo.com/*",
+        "*://www.tumblr.com/*"
       ],
       "css": ["assets/fonts/lancelot.css", "styles/content.css"],
       "js":  ["scripts/vendor/jquery.min.js", "scripts/constants.js", "scripts/helpers.js", "scripts/content.js"]

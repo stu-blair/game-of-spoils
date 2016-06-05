@@ -143,6 +143,8 @@ initialize = (function(_this) {
       return initiateSpoilerBlocking(BUZZFEED_ELEMENTS_SELECTOR);
     } else if (url.indexOf('gizmodo.com') > -1) {
       return initiateSpoilerBlocking(GIZMODO_ELEMENTS_SELECTOR);
+    } else if (url.indexOf('tumblr.com') > -1) {
+      return initiateSpoilerBlocking(TUMBLR_ELEMENTS_SELECTOR);
     }
   };
 })(this);

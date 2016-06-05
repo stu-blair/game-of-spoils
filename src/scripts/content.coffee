@@ -117,3 +117,6 @@ initialize = =>
 
   else if url.indexOf('gizmodo.com') > -1
     initiateSpoilerBlocking GIZMODO_ELEMENTS_SELECTOR
+
+  else if url.indexOf('tumblr.com') > -1
+    initiateSpoilerBlocking TUMBLR_ELEMENTS_SELECTOR

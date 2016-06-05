@@ -13,6 +13,7 @@ GOOGLE_PLUS_ELEMENTS_SELECTOR      = 'div[id^="update-"], c-wiz div div c-wiz'
 YOUTUBE_ELEMENTS_SELECTOR          = '.yt-lockup, .related-list-item, .comment-renderer-text'
 BUZZFEED_ELEMENTS_SELECTOR         = '.lede'
 GIZMODO_ELEMENTS_SELECTOR          = '.featured-item, article'
+TUMBLR_ELEMENTS_SELECTOR           = '.post_container, article'
 
 # GoT-specific words that are potentially spoiler-ific and thus trigger a spoiler blocker
 SPOILER_WORDS_LIST = [
