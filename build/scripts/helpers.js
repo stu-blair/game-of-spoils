@@ -44,7 +44,7 @@ loadUserPreferences = (function(_this) {
       if (!userPreferencesJSONString) {
         _this.userPreferences = {
           blockingEnabled: true,
-          showSpecificWordEnabled: true,
+          showSpecificWordEnabled: false,
           extraWordsToBlock: ''
         };
       } else {
@@ -53,7 +53,7 @@ loadUserPreferences = (function(_this) {
           _this.userPreferences.blockingEnabled = true;
         }
         if (!_this.userPreferences.hasOwnProperty('showSpecificWordEnabled')) {
-          _this.userPreferences.showSpecificWordEnabled = true;
+          _this.userPreferences.showSpecificWordEnabled = false;
         }
         if (!_this.userPreferences.hasOwnProperty('extraWordsToBlock')) {
           _this.userPreferences.extraWordsToBlock = '';
