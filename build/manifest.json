@@ -36,7 +36,8 @@
         "*://news.google.co.in/*",
         "*://plus.google.com/*",
         "*://www.youtube.com/*",
-        "*://www.buzzfeed.com/*"
+        "*://www.buzzfeed.com/*",
+        "*://gizmodo.com/*"
       ],
       "css": ["assets/fonts/lancelot.css", "styles/content.css"],
       "js":  ["scripts/vendor/jquery.min.js", "scripts/constants.js", "scripts/helpers.js", "scripts/content.js"]
