@@ -2,7 +2,7 @@ var AVCLUB_FEED_ELEMENTS_SELECTOR, DATA_KEY, DEATH_NAMES, FACEBOOK_FEED_ELEMENTS
 
 DATA_KEY = 'game-of-spoils';
 
-FACEBOOK_FEED_ELEMENTS_SELECTOR = '.userContentWrapper';
+FACEBOOK_FEED_ELEMENTS_SELECTOR = '.userContentWrapper, #pagelet_trending_tags_and_topics ul > li';
 
 TWITTER_FEED_ELEMENTS_SELECTOR = "[data-item-type='tweet'], .trend-item";
 
