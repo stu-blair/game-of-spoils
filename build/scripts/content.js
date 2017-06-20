@@ -147,7 +147,7 @@ initialize = (function(_this) {
     } else if (url.indexOf('buzzfeed.com') > -1) {
       _this.smaller_font_mode = true;
       return initiateSpoilerBlocking(BUZZFEED_ELEMENTS_SELECTOR);
-    } else if (url.indexOf('gizmodo.com') > -1) {
+    } else if (url.indexOf('gizmodo.co') > -1) {
       return initiateSpoilerBlocking(GIZMODO_ELEMENTS_SELECTOR);
     } else if (url.indexOf('tumblr.com') > -1) {
       return initiateSpoilerBlocking(TUMBLR_ELEMENTS_SELECTOR);

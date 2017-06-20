@@ -120,7 +120,7 @@ initialize = =>
     @smaller_font_mode = true
     initiateSpoilerBlocking BUZZFEED_ELEMENTS_SELECTOR
 
-  else if url.indexOf('gizmodo.com') > -1
+  else if url.indexOf('gizmodo.co') > -1
     initiateSpoilerBlocking GIZMODO_ELEMENTS_SELECTOR
 
   else if url.indexOf('tumblr.com') > -1

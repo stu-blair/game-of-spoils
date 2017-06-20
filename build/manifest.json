@@ -27,6 +27,7 @@
     {
       "matches": [
         "*://feedly.com/*",
+        "*://gizmodo.co.uk/*",
         "*://gizmodo.com/*",
         "*://news.google.co.in/*",
         "*://news.google.co.uk/*",
