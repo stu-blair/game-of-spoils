@@ -4,7 +4,7 @@ DATA_KEY = 'game-of-spoils'
 # jQuery selectors that specify elements to block on each supported site
 AVCLUB_FEED_ELEMENTS_SELECTOR      = '.item, article.short, article > .heading'
 BUZZFEED_ELEMENTS_SELECTOR         = '.lede'
-FACEBOOK_FEED_ELEMENTS_SELECTOR    = '.userContentWrapper, #pagelet_trending_tags_and_topics ul > li'
+FACEBOOK_FEED_ELEMENTS_SELECTOR    = '.fbUserContent, #pagelet_trending_tags_and_topics ul > li'
 FEEDLY_ELEMENTS_SELECTOR           = '.u5Entry > div, .u0Entry, .topRecommendedEntry, .u4Entry > div, .u100Frame, .u12Entry > div'
 GIZMODO_ELEMENTS_SELECTOR          = '.featured-item, article'
 GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = '.blended-wrapper'
