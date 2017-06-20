@@ -3,9 +3,11 @@ sessionSpoilersBlocked  = 0
 document.addEventListener 'DOMContentLoaded', =>
   @blockingEnabledToggle  = document.getElementById 'blocking-enabled-toggle'
   @showSpecificWordToggle = document.getElementById 'show-specific-word-toggle'
+  @destroySpoilersToggle  = document.getElementById 'destroy-spoilers-toggle'
   @extraWordsHolder       = document.getElementById 'extra-words-to-block'
   @blockingEnabledToggle.addEventListener  'change', storeUserPreferences
   @showSpecificWordToggle.addEventListener 'change', storeUserPreferences
+  @destroySpoilersToggle.addEventListener 'change', storeUserPreferences
   @extraWordsHolder.addEventListener 'keyup', storeUserPreferences
 
   $('.onoffswitch-switch').css 'background-image', 'url("assets/images/targaryen.png")'
@@ -24,6 +26,7 @@ loadUserPreferencesAndUpdate = =>
   loadUserPreferences =>
     @blockingEnabledToggle.checked  = @userPreferences.blockingEnabled
     @showSpecificWordToggle.checked = @userPreferences.showSpecificWordEnabled
+    @destroySpoilersToggle.checked  = @userPreferences.destroySpoilers
     @extraWordsHolder.value         = @userPreferences.extraWordsToBlock
 
 storeUserPreferences = =>
@@ -31,6 +34,7 @@ storeUserPreferences = =>
   data[DATA_KEY] = JSON.stringify {
     blockingEnabled: @blockingEnabledToggle.checked
     showSpecificWordEnabled: @showSpecificWordToggle.checked
+    destroySpoilers: @destroySpoilersToggle.checked
     extraWordsToBlock: @extraWordsHolder.value
   }
   cl "Storing user preferences: #{data}"

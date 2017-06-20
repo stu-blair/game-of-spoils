@@ -23,14 +23,21 @@
         %label.onoffswitch-label{for: "blocking-enabled-toggle"}
           %span.onoffswitch-inner
           %span.onoffswitch-switch
-      .setting-text= 'Blocking spoilers enabled'
+      .setting-text= 'Enabled'
+    .setting-holder
+      .onoffswitch
+        %input#destroy-spoilers-toggle.onoffswitch-checkbox{type: "checkbox", name: "onoffswitch", checked: "checked"}
+        %label.onoffswitch-label{for: "destroy-spoilers-toggle"}
+          %span.onoffswitch-inner
+          %span.onoffswitch-switch
+      .setting-text= 'Hide instead of block'
     .setting-holder
       .onoffswitch
         %input#show-specific-word-toggle.onoffswitch-checkbox{type: "checkbox", name: "onoffswitch", checked: "checked"}
         %label.onoffswitch-label{for: "show-specific-word-toggle"}
           %span.onoffswitch-inner
           %span.onoffswitch-switch
-      .setting-text= 'Show specific phrase blocked'
+      .setting-text= 'Specify spoiling phrase'
     .setting-holder{style: "height: auto;"}
       .setting-text.centered= 'Add extra phrases to block'
       %textarea#extra-words-to-block{placeholder: "Separate with commas like: Jon Snow, Hodor, etc. Note that it matches parts of words, and capitalization is ignored, so 'GoT' would block any word with 'got' in it, like 'gotcha'."}

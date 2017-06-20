@@ -5,11 +5,13 @@ num_feed_elems       = null
 settings =
   show_specific_words: true
   spoiler_words_regex: null
+  execute_trailors:    false
 $document = $(document)
 
 $document.ready ->
   chrome.runtime.sendMessage { userPreferencesRequested: true }, (response) =>
     settings.show_specific_words  = response.showSpecificWordEnabled
+    settings.execute_trailors     = response.destroySpoilers
     extra_words_to_block = response.extraWordsToBlock
                                    .split(',')
                                    .map((word) -> word.trim().escapeRegex())
@@ -53,6 +55,10 @@ searchForAndBlockSpoilers = (feed_elements_selector, force_update) =>
 
 
 exileTraitorousSpoiler = ($traitor, dark_words_of_spoilage) ->
+  incrementBadgeNumber()
+  if settings.execute_trailors
+    $traitor.remove()
+    return
   capitalized_spoiler_words = dark_words_of_spoilage.capitalizeFirstLetter()
   cl "A bespoiling traitor in our midst! the forbidden words hath been spake: '#{capitalized_spoiler_words}'."
   $traitor.addClass 'glamoured'
@@ -62,7 +68,6 @@ exileTraitorousSpoiler = ($traitor, dark_words_of_spoilage) ->
                       <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3>
                     </div>"
   $(glamour_string).appendTo $traitor
-  incrementBadgeNumber()
   $glamour = $traitor.find '.spoiler-glamour'
   $glamour.on 'click', (ev) ->
     ev.stopPropagation()

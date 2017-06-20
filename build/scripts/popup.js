@@ -6,9 +6,11 @@ document.addEventListener('DOMContentLoaded', (function(_this) {
   return function() {
     _this.blockingEnabledToggle = document.getElementById('blocking-enabled-toggle');
     _this.showSpecificWordToggle = document.getElementById('show-specific-word-toggle');
+    _this.destroySpoilersToggle = document.getElementById('destroy-spoilers-toggle');
     _this.extraWordsHolder = document.getElementById('extra-words-to-block');
     _this.blockingEnabledToggle.addEventListener('change', storeUserPreferences);
     _this.showSpecificWordToggle.addEventListener('change', storeUserPreferences);
+    _this.destroySpoilersToggle.addEventListener('change', storeUserPreferences);
     _this.extraWordsHolder.addEventListener('keyup', storeUserPreferences);
     $('.onoffswitch-switch').css('background-image', 'url("assets/images/targaryen.png")');
     loadUserPreferencesAndUpdate();
@@ -30,6 +32,7 @@ loadUserPreferencesAndUpdate = (function(_this) {
     return loadUserPreferences(function() {
       _this.blockingEnabledToggle.checked = _this.userPreferences.blockingEnabled;
       _this.showSpecificWordToggle.checked = _this.userPreferences.showSpecificWordEnabled;
+      _this.destroySpoilersToggle.checked = _this.userPreferences.destroySpoilers;
       return _this.extraWordsHolder.value = _this.userPreferences.extraWordsToBlock;
     });
   };
@@ -42,6 +45,7 @@ storeUserPreferences = (function(_this) {
     data[DATA_KEY] = JSON.stringify({
       blockingEnabled: _this.blockingEnabledToggle.checked,
       showSpecificWordEnabled: _this.showSpecificWordToggle.checked,
+      destroySpoilers: _this.destroySpoilersToggle.checked,
       extraWordsToBlock: _this.extraWordsHolder.value
     });
     cl("Storing user preferences: " + data);

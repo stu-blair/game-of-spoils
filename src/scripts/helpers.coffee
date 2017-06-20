@@ -38,12 +38,14 @@ loadUserPreferences = (callback) =>
         blockingEnabled: true
         showSpecificWordEnabled: false
         extraWordsToBlock: ''
+        destroySpoilers: false
       }
     else
       @userPreferences = JSON.parse userPreferencesJSONString
       @userPreferences.blockingEnabled         = true  unless @userPreferences.hasOwnProperty 'blockingEnabled'
       @userPreferences.showSpecificWordEnabled = false unless @userPreferences.hasOwnProperty 'showSpecificWordEnabled'
       @userPreferences.extraWordsToBlock       = ''    unless @userPreferences.hasOwnProperty 'extraWordsToBlock'
+      @userPreferences.destroySpoilers         = false unless @userPreferences.hasOwnProperty 'destroySpoilers'
     callback() if callback
 
 

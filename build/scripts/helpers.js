@@ -45,7 +45,8 @@ loadUserPreferences = (function(_this) {
         _this.userPreferences = {
           blockingEnabled: true,
           showSpecificWordEnabled: false,
-          extraWordsToBlock: ''
+          extraWordsToBlock: '',
+          destroySpoilers: false
         };
       } else {
         _this.userPreferences = JSON.parse(userPreferencesJSONString);
@@ -57,6 +58,9 @@ loadUserPreferences = (function(_this) {
         }
         if (!_this.userPreferences.hasOwnProperty('extraWordsToBlock')) {
           _this.userPreferences.extraWordsToBlock = '';
+        }
+        if (!_this.userPreferences.hasOwnProperty('destroySpoilers')) {
+          _this.userPreferences.destroySpoilers = false;
         }
       }
       if (callback) {

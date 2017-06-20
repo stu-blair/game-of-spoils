@@ -10,7 +10,8 @@ this.reddit_mode = false;
 
 settings = {
   show_specific_words: true,
-  spoiler_words_regex: null
+  spoiler_words_regex: null,
+  execute_trailors: false
 };
 
 $document = $(document);
@@ -22,6 +23,7 @@ $document.ready(function() {
     return function(response) {
       var extra_words_to_block;
       settings.show_specific_words = response.showSpecificWordEnabled;
+      settings.execute_trailors = response.destroySpoilers;
       extra_words_to_block = response.extraWordsToBlock.split(',').map(function(word) {
         return word.trim().escapeRegex();
       }).filter(function(word) {
@@ -85,13 +87,17 @@ searchForAndBlockSpoilers = (function(_this) {
 
 exileTraitorousSpoiler = function($traitor, dark_words_of_spoilage) {
   var $glamour, capitalized_spoiler_words, glamour_string, specific_words;
+  incrementBadgeNumber();
+  if (settings.execute_trailors) {
+    $traitor.remove();
+    return;
+  }
   capitalized_spoiler_words = dark_words_of_spoilage.capitalizeFirstLetter();
   cl("A bespoiling traitor in our midst! the forbidden words hath been spake: '" + capitalized_spoiler_words + "'.");
   $traitor.addClass('glamoured');
   specific_words = settings.show_specific_words ? ", because it dared mention the phrase '" + capitalized_spoiler_words + "'" : "";
   glamour_string = "<div class='spoiler-glamour " + (this.smaller_font_mode ? 'small' : '') + " " + (this.reddit_mode ? 'redditized' : '') + "'> <h3 class='spoiler-obituary'>A potential spoiler here " + (getDeathName()) + specific_words + ".</h3> <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3> </div>";
   $(glamour_string).appendTo($traitor);
-  incrementBadgeNumber();
   $glamour = $traitor.find('.spoiler-glamour');
   return $glamour.on('click', function(ev) {
     var specific_words_for_confirm;
