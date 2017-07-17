@@ -48,6 +48,7 @@ SPOILER_WORDS_LIST = [
   'game of thrones'
   'gameofthrone'
   'gameofthone'
+  'gamesofthrone'
   'greyjoy'
   'gwendoline christie'
   'highgarden'
