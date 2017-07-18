@@ -28,14 +28,15 @@ getDeathName = ->
   DEATH_NAMES[Math.floor(Math.random() * DEATH_NAMES.length)]
 
 
-initiateSpoilerBlocking = (selector_string) ->
-  searchForAndBlockSpoilers selector_string, true
-  $document.scroll ->
-    debounce -> searchForAndBlockSpoilers(selector_string)
+initiateSpoilerBlocking = (selector_string, remove_parent) ->
+  searchForAndBlockSpoilers selector_string, true, remove_parent
+  $document.mousemove ->
+    debounce -> searchForAndBlockSpoilers(selector_string, false, remove_parent)
 
 
-searchForAndBlockSpoilers = (feed_elements_selector, force_update) =>
+searchForAndBlockSpoilers = (feed_elements_selector, force_update, remove_parent) =>
   $new_feed_elems = $(feed_elements_selector)
+  $new_feed_elems = $new_feed_elems.parent() if remove_parent
   return if $new_feed_elems.length == 0
   new_length      = $new_feed_elems.length
   new_first_text  = $new_feed_elems.first()[0].textContent
@@ -90,7 +91,7 @@ initialize = =>
 
   else if url.indexOf('news.google') > -1
     @smaller_font_mode = true
-    initiateSpoilerBlocking GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR
+    initiateSpoilerBlocking GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR, true
 
   else if url.indexOf('reddit.com') > -1
     @reddit_mode = true

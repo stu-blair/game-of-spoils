@@ -47,19 +47,22 @@ getDeathName = function() {
   return DEATH_NAMES[Math.floor(Math.random() * DEATH_NAMES.length)];
 };
 
-initiateSpoilerBlocking = function(selector_string) {
-  searchForAndBlockSpoilers(selector_string, true);
-  return $document.scroll(function() {
+initiateSpoilerBlocking = function(selector_string, remove_parent) {
+  searchForAndBlockSpoilers(selector_string, true, remove_parent);
+  return $document.mousemove(function() {
     return debounce(function() {
-      return searchForAndBlockSpoilers(selector_string);
+      return searchForAndBlockSpoilers(selector_string, false, remove_parent);
     });
   });
 };
 
 searchForAndBlockSpoilers = (function(_this) {
-  return function(feed_elements_selector, force_update) {
+  return function(feed_elements_selector, force_update, remove_parent) {
     var $new_feed_elems, new_first_text, new_length;
     $new_feed_elems = $(feed_elements_selector);
+    if (remove_parent) {
+      $new_feed_elems = $new_feed_elems.parent();
+    }
     if ($new_feed_elems.length === 0) {
       return;
     }
@@ -124,7 +127,7 @@ initialize = (function(_this) {
       return initiateSpoilerBlocking(TWITTER_FEED_ELEMENTS_SELECTOR);
     } else if (url.indexOf('news.google') > -1) {
       _this.smaller_font_mode = true;
-      return initiateSpoilerBlocking(GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR);
+      return initiateSpoilerBlocking(GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR, true);
     } else if (url.indexOf('reddit.com') > -1) {
       _this.reddit_mode = true;
       if (url.search(GOT_SUBREDDITS_REGEX) === -1) {

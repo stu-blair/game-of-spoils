@@ -12,7 +12,7 @@ FEEDLY_ELEMENTS_SELECTOR = '.u5Entry > div, .u0Entry, .topRecommendedEntry, .u4E
 
 GIZMODO_ELEMENTS_SELECTOR = '.featured-item, article';
 
-GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = '.blended-wrapper';
+GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = 'a[target="_blank"]';
 
 GOOGLE_PLUS_ELEMENTS_SELECTOR = 'div[id^="update-"], c-wiz div div c-wiz';
 
