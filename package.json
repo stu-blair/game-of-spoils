@@ -16,6 +16,7 @@
     "gulp-coffeelint": "^0.6.0",
     "gulp-haml": "^0.1.6",
     "gulp-jshint": "^2.0.0",
+    "gulp-json-transform": "^0.4.2",
     "gulp-minify-css": "^1.2.3",
     "gulp-ruby-haml": "0.0.7",
     "gulp-sass": "^2.1.1",
