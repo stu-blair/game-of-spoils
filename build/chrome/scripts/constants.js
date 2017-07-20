@@ -8,7 +8,7 @@ BUZZFEED_ELEMENTS_SELECTOR = '.lede';
 
 FACEBOOK_FEED_ELEMENTS_SELECTOR = '.fbUserContent, #pagelet_trending_tags_and_topics ul > li';
 
-FEEDLY_ELEMENTS_SELECTOR = '.u5Entry > div, .u0Entry, .topRecommendedEntry, .u4Entry > div, .u100Frame, .u12Entry > div';
+FEEDLY_ELEMENTS_SELECTOR = '.entry';
 
 GIZMODO_ELEMENTS_SELECTOR = '.featured-item, article';
 
