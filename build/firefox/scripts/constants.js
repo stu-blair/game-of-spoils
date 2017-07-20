@@ -4,7 +4,7 @@ DATA_KEY = 'game-of-spoils';
 
 AVCLUB_FEED_ELEMENTS_SELECTOR = '.item, article.short, article > .heading';
 
-BUZZFEED_ELEMENTS_SELECTOR = '.lede';
+BUZZFEED_ELEMENTS_SELECTOR = '.card--article-featured, .card--article, .card--package, .card--video, .sidebar__link, .js-now-buzzing__list > li';
 
 FACEBOOK_FEED_ELEMENTS_SELECTOR = '.fbUserContent, #pagelet_trending_tags_and_topics ul > li';
 
