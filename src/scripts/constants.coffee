@@ -9,7 +9,7 @@ FEEDLY_ELEMENTS_SELECTOR           = '.entry'
 GIZMODO_ELEMENTS_SELECTOR          = '.featured-item, article'
 GOOGLE_NEWS_FEED_ELEMENTS_SELECTOR = 'a[target="_blank"]'
 GOOGLE_PLUS_ELEMENTS_SELECTOR      = 'div[id^="update-"], c-wiz div div c-wiz'
-REDDIT_FEED_ELEMENTS_SELECTOR      = '.sitetable > .thing.link:visible'
+REDDIT_FEED_ELEMENTS_SELECTOR      = '.sitetable > .thing.link:visible, .usertext-body'
 SLACK_FEED_ELEMENTS_SELECTOR       = 'ts-message'
 TUMBLR_ELEMENTS_SELECTOR           = '.post_container, article'
 TWITTER_FEED_ELEMENTS_SELECTOR     = "[data-item-type='tweet'], .trend-item"
