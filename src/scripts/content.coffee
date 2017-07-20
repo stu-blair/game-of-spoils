@@ -72,6 +72,7 @@ exileTraitorousSpoiler = ($traitor, dark_words_of_spoilage) ->
   $glamour = $traitor.find '.spoiler-glamour'
   $glamour.on 'click', (ev) ->
     ev.stopPropagation()
+    ev.preventDefault()
     specific_words_for_confirm = if settings.show_specific_words then "mention of '#{capitalized_spoiler_words}'" else "spoiler"
     return unless confirm "Are you sure you want to view this potentially spoiler-ific #{specific_words_for_confirm}?"
     $glamour.addClass 'revealed'

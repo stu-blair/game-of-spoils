@@ -105,6 +105,7 @@ exileTraitorousSpoiler = function($traitor, dark_words_of_spoilage) {
   return $glamour.on('click', function(ev) {
     var specific_words_for_confirm;
     ev.stopPropagation();
+    ev.preventDefault();
     specific_words_for_confirm = settings.show_specific_words ? "mention of '" + capitalized_spoiler_words + "'" : "spoiler";
     if (!confirm("Are you sure you want to view this potentially spoiler-ific " + specific_words_for_confirm + "?")) {
       return;
