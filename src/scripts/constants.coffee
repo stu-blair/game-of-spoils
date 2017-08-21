@@ -100,6 +100,7 @@ SPOILER_WORDS_LIST = [
   'sothoryos'
   'stephen dillane'
   'targaryen'
+  'three eyed raven'
   'tower of joy'
   'tyrion'
   'vaes dothrak'
