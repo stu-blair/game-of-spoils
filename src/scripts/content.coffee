@@ -38,20 +38,18 @@ searchForAndBlockSpoilers = (feed_elements_selector, force_update, remove_parent
   $new_feed_elems = $(feed_elements_selector)
   $new_feed_elems = $new_feed_elems.parent() if remove_parent
   return if $new_feed_elems.length == 0
-  new_length      = $new_feed_elems.length
-  new_first_text  = $new_feed_elems.first()[0].textContent
-  if force_update || (new_length != num_feed_elems) || (new_first_text != first_feed_elem_text)
+  new_length    = $new_feed_elems.length
+  new_last_text = $new_feed_elems.last()[0].textContent
+  if force_update || (new_length != num_feed_elems) || (new_last_text != last_feed_elem_text)
     cl "Updating potential spoilers, previously '#{num_feed_elems}', now '#{new_length}'."
-    first_feed_elem_text = new_first_text
-    num_feed_elems       = new_length
+    last_feed_elem_text = new_last_text
+    num_feed_elems      = new_length
     $new_feed_elems.each ->
       # Ignore elements that are already glamoured or already designated safe
-      return if @className.search(/true-and-leal|glamoured/) > -1
+      return if @className.search(/glamoured/) > -1
       # Search textContent of the element to see if it contains any spoilers
       matchedSpoiler = @textContent.match settings.spoiler_words_regex
-      if matchedSpoiler == null
-        addClass this, 'true-and-leal'
-      else
+      if matchedSpoiler != null
         exileTraitorousSpoiler $(this), matchedSpoiler[0]
 
 
