@@ -149,5 +149,6 @@ GOT_RELATED_SUBREDDITS = [
   'thronescomics'
   'asongofmemesandrage'
   'earthoficeandfire'
+  'freefolk'
 ]
 GOT_SUBREDDITS_REGEX = new RegExp('(\/r\/)' + GOT_RELATED_SUBREDDITS.join('|'), 'i')
